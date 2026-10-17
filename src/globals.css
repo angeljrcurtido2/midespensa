@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* Configurar dark mode basado en clase (en lugar de prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Variables para dark mode */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Identidad propia: todo el azul del sistema pasa a violeta y las esquinas son más redondeadas. */
+@theme static {
+  --color-blue-50: oklch(97.7% 0.014 308.299);
+  --color-blue-100: oklch(94.3% 0.029 294.588);
+  --color-blue-200: oklch(89.4% 0.057 293.283);
+  --color-blue-300: oklch(81.1% 0.111 293.571);
+  --color-blue-400: oklch(70.2% 0.183 293.541);
+  --color-blue-500: oklch(60.6% 0.25 292.717);
+  --color-blue-600: oklch(54.1% 0.281 293.009);
+  --color-blue-700: oklch(49.1% 0.27 292.581);
+  --color-blue-800: oklch(43.2% 0.232 292.759);
+  --color-blue-900: oklch(38% 0.189 293.745);
+  --color-blue-950: oklch(28.3% 0.141 291.089);
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+  --radius-2xl: 1.5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+}
+
+
+/* Nueva venta en pantalla completa: las secciones del formulario usan un encabezado sobrio en lugar de la franja de color. */
+.venta-compacta div:has(> h3) {
+  background: #f1f5f9 !important;
+  background-image: none !important;
+  padding: 0.6rem 1rem !important;
+  border-bottom: 1px solid #e2e8f0;
+}
+.venta-compacta h3 { color: #0f172a !important; font-size: 0.95rem !important; }
+.venta-compacta h3 + p { display: none; }
+.dark .venta-compacta div:has(> h3) { background: #1e293b !important; border-color: #334155; }
+.dark .venta-compacta h3 { color: #f1f5f9 !important; }
+.venta-compacta [data-venta-compact-header] { padding: 0.35rem 0.55rem !important; }
+.venta-compacta [data-venta-compact-header] h3 { font-size: 0.72rem !important; line-height: 1rem; }
+.venta-compacta [data-venta-compact-header] p { display: none; }
+.venta-compacta [data-venta-compact-body] { padding: 0.5rem !important; gap: 0.5rem !important; }
+.venta-compacta [data-venta-compact-body] label { margin-bottom: 0.15rem !important; font-size: 0.7rem !important; }
+.venta-compacta [data-venta-compact-body] input,
+.venta-compacta [data-venta-compact-body] select,
+.venta-compacta [data-venta-compact-body] textarea,
+.venta-compacta [data-venta-compact-body] button { padding: 0.3rem 0.5rem !important; font-size: 0.75rem !important; }
+.venta-compacta [data-venta-compact-body] textarea { min-height: 2.5rem !important; }
+
+
+/* Campos que faltan o están mal (ver utils/camposInvalidos.ts) */
+[data-invalido="true"] {
+  border-color: #ef4444 !important;
+  outline: 2px solid #ef4444 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.2) !important;
+  animation: invalido-temblor 0.4s ease-in-out;
+  scroll-margin-top: 120px;
+}
+@keyframes invalido-temblor {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-invalido="true"] { animation: none; }
+}

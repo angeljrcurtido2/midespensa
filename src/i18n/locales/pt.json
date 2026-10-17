@@ -1,0 +1,40 @@
+{
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "select": "Selecionar",
+    "search": "Pesquisar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "loading": "Carregando...",
+    "noData": "Nenhum dado disponível",
+    "actions": "Ações",
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "sales": {
+    "title": "Vendas",
+    "client": "Cliente",
+    "date": "Data da Venda",
+    "type": "Tipo de Venda",
+    "cash": "À Vista",
+    "credit": "Crédito"
+  },
+  "products": {
+    "title": "Produtos",
+    "name": "Nome",
+    "price": "Preço",
+    "stock": "Estoque",
+    "category": "Categoria"
+  },
+  "clients": {
+    "title": "Clientes",
+    "name": "Nome",
+    "document": "Documento",
+    "phone": "Telefone",
+    "address": "Endereço"
+  }
+}

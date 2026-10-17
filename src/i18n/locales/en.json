@@ -1,0 +1,40 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "select": "Select",
+    "search": "Search",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "close": "Close",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "sales": {
+    "title": "Sales",
+    "client": "Client",
+    "date": "Sale Date",
+    "type": "Sale Type",
+    "cash": "Cash",
+    "credit": "Credit"
+  },
+  "products": {
+    "title": "Products",
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "category": "Category"
+  },
+  "clients": {
+    "title": "Clients",
+    "name": "Name",
+    "document": "Document",
+    "phone": "Phone",
+    "address": "Address"
+  }
+}
