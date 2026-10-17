@@ -3,8 +3,15 @@ import {
   BuildingStorefrontIcon,
   BanknotesIcon,
   Cog6ToothIcon,
+  BookOpenIcon,
+  UserGroupIcon,
+  KeyIcon,
 } from '@heroicons/react/24/outline';
 import { type ComponentType, type SVGProps } from 'react';
+
+// Configuración de email: oculta por defecto (VITE_FEATURE_EMAIL_ENABLED=true la vuelve a mostrar).
+// Optional chaining: los tests corren con tsx, donde import.meta.env no existe.
+const EMAIL_HABILITADO = import.meta.env?.VITE_FEATURE_EMAIL_ENABLED === 'true';
 
 interface NavItem {
   name: string;
@@ -71,7 +78,7 @@ export type PermisosMenu = { modulo: string; ver: boolean }[] | null;
 
 export const generateNavItems = (
   userRole: string | null,
-  _esProveedor = false,
+  esProveedor = false,
   permisos: PermisosMenu = null,
 ): NavItem[] => {
   const allItems: NavItem[] = [
@@ -80,6 +87,9 @@ export const generateNavItems = (
       icon: Squares2X2Icon,
       subItems: [
         { name: 'Inicio', path: '/dashboard' },
+        { name: 'Usuarios', path: '/usuario' },
+        { name: 'Funcionarios', path: '/funcionarios' },
+        { name: 'Usuarios y accesos', path: '/accesos' },
       ],
     },
     {
@@ -103,6 +113,10 @@ export const generateNavItems = (
           { name: 'Nueva categoría', path: '/categoria/nueva' },
           { name: 'Listar categorías', path: '/categoria' },
         ] },
+        { name: 'Lector código de barras para web', path: '/lector-codigo-barra-web' },
+        { name: 'Promociones', path: '/promociones' },
+        { name: 'Publicidad', path: '/publicidad' },
+        { name: 'Facturador', path: '/facturador' },
       ],
     },
     {
@@ -117,6 +131,9 @@ export const generateNavItems = (
           { name: 'Nueva venta', path: '/ventas/nueva' },
           { name: 'Listar ventas', path: '/ventas' },
         ] },
+        { name: 'Ventas Programadas', path: '/ventas/ventaProgramada' },
+        { name: 'Cobro Ventas Crédito', path: '/ventas/cobrodeuda' },
+        { name: 'Pago Compras Crédito', path: '/compras/cobrodeuda' },
         { name: 'Movimientos', path: '/movimiento/cierrecaja', children: [
           { name: 'Abrir caja', path: '/movimiento/cierrecaja/apertura/nueva' },
           { name: 'Listar movimientos', path: '/movimiento/cierrecaja' },
@@ -134,6 +151,26 @@ export const generateNavItems = (
           { name: 'Listar egresos', path: '/movimiento/egreso' },
         ] },
         { name: 'Ingresos y Egresos', path: '/movimiento/resumen' },
+        { name: 'Cajas en vivo', path: '/movimiento/cajas-en-vivo' },
+      ],
+    },
+    {
+      name: 'Contabilidad',
+      icon: BookOpenIcon,
+      subItems: [{ name: 'Libros Contables', path: '/contabilidad' }],
+    },
+    {
+      name: 'RRHH',
+      icon: UserGroupIcon,
+      subItems: [
+        { name: 'Empleados', path: '/empleados' },
+        { name: 'Salarios', path: '/salarios' },
+        { name: 'Asistencias', path: '/asistencia' },
+        { name: 'Horas Extras', path: '/horas-extras' },
+        { name: 'Comisiones', path: '/comisiones' },
+        { name: 'Amonestaciones', path: '/amonestaciones' },
+        { name: 'Bonos/Descuentos', path: '/movimientos-rrhh' },
+        { name: 'Liquidaciones', path: '/liquidaciones' },
       ],
     },
     {
@@ -141,10 +178,21 @@ export const generateNavItems = (
       icon: Cog6ToothIcon,
       subItems: [
         { name: 'Configuración', path: '/configuracion' },
+        ...(EMAIL_HABILITADO ? [{ name: 'Email', path: '/configuracion/email' }] : []),
         { name: 'Mi plan', path: '/mi-licencia' },
       ],
     },
   ];
+
+  // Panel de licencias de TODOS los clientes: solo para el proveedor del sistema (el backend
+  // lo exige igual con requireProveedor; ocultarlo acá es solo para que nadie más lo vea).
+  if (esProveedor) {
+    allItems.push({
+      name: 'Proveedor',
+      icon: KeyIcon,
+      subItems: [{ name: 'Licencias', path: '/licencias' }],
+    });
+  }
 
   // Los permisos se evalúan ANTES que el rol. El backend ya distinguió si quien
   // consulta es administrador —en ese caso devuelve null y se cae al rol—, así

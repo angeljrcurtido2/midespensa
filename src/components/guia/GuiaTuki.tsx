@@ -15,6 +15,8 @@ import { VentanaActivaContext } from '../../hooks/useAlVolverALaVentana';
  *   "boton:<texto>"    el botón visible cuyo texto contiene ese texto
  *   sin destino        el paso solo explica
  */
+const MASCOTA_ACTIVA = false;
+
 export interface PasoGuia {
   id: string;
   destino?: string;
@@ -181,7 +183,8 @@ export function useGuiaTuki(clave: string) {
 /** Botón flotante "Guíame" (con invitación la primera vez). */
 export function BotonTuki({ nombre, invitar, onAbrir, onRechazar }: { nombre: string; invitar: boolean; onAbrir: () => void; onRechazar: () => void }) {
   const ventanaActiva = useContext(VentanaActivaContext);
-  if (!ventanaActiva) return null;
+  // Versión gratuita: sin mascota (es de la marca del sistema de pago).
+  if (!ventanaActiva || !MASCOTA_ACTIVA) return null;
   return (
     <div className="fixed bottom-4 left-4 z-[55] flex items-end gap-2 md:left-28">
       {invitar && (
