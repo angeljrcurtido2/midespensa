@@ -123,7 +123,7 @@ export function TablaListado<T>({ columnas, filas, claveFila, cargando, vacio, a
   return (
     <div className="relative" role="table">
       {/* Rótulos (solo escritorio) */}
-      <div role="row" className="hidden gap-4 px-6 pb-2 text-[11px] font-black uppercase tracking-[0.12em] text-stone-400 md:grid" style={{ gridTemplateColumns: plantilla }}>
+      <div role="row" className="hidden gap-4 pl-8 pr-6 pb-2 text-[11px] font-black uppercase tracking-[0.12em] text-stone-400 md:grid" style={{ gridTemplateColumns: plantilla }}>
         {columnas.map((c) => (
           <div key={c.clave} role="columnheader" className={alinea(c.alinear)}>{c.titulo}</div>
         ))}
