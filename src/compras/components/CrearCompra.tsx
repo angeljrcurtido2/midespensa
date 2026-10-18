@@ -468,7 +468,7 @@ const CrearCompra = ({ onSuccess, pagina = false }: CrearCompraProps) => {
                 <div className="flex flex-wrap items-start gap-3">
                   <div className="min-w-[260px] flex-1"><BuscadorProducto modo="compra" onElegir={(producto) => { void handleSeleccionarProducto(producto); }} /></div>
                   <button type="button" onClick={() => abrirCatalogo()} className="flex items-center gap-2 rounded-xl border-2 border-blue-300 bg-white px-4 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50 dark:bg-slate-800 dark:text-blue-300"><FaPlus size={14} aria-hidden="true" />Ver cat{"\u00e1"}logo</button>
-                  <button type="button" onClick={() => setShowCrearProducto((prev) => !prev)} className="flex items-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white hover:bg-green-700"><FaBoxOpen size={14} aria-hidden="true" />{showCrearProducto ? 'Ocultar formulario' : 'Crear producto'}</button>
+                  <button type="button" onClick={() => setShowCrearProducto((prev) => !prev)} className="flex items-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-semibold text-white hover:bg-orange-700"><FaBoxOpen size={14} aria-hidden="true" />{showCrearProducto ? 'Ocultar formulario' : 'Crear producto'}</button>
                 </div>
               )}
               {showCrearProducto && (

@@ -155,10 +155,10 @@ const ListarAsistencia = () => {
             </div>
             <div className="text-center sm:text-left">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-1">
-                Gestion de Asistencias
+                Gestión de Asistencias
               </h1>
               <p className="text-xs sm:text-sm md:text-base text-blue-100">
-                Administra asistencia por empleado
+                Administrá la asistencia de cada empleado
               </p>
             </div>
           </div>

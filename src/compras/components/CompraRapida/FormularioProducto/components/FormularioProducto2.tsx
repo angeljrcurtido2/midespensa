@@ -238,9 +238,9 @@ const FormularioProducto2 = ({ productosNuevos, setPrecioCompraTest, onProcesoCo
             <SeccionPresentaciones form={form} onFormChange={onFormChange} />
             <div className='flex flex-row gap-4 px-2'>
 
-                <div className="w-auto bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-2 border border-amber-200 dark:border-gray-700">
+                <div className="w-auto bg-orange-50/60 dark:bg-gray-800 rounded-xl p-2 border border-orange-100 dark:border-gray-700">
                     <div className={styleforStep}>
-                        <div className="truncate bg-amber-500 text-white rounded-lg px-3 py-1 text-sm font-bold shadow-md">
+                        <div className="bg-orange-600 text-white rounded-full px-3 py-1 text-sm font-extrabold">
                             {form.unidad_medida === "CAJA" ? "PASO 4" : "PASO 3"}
                         </div>
                         <h4 className={styleTitleBox}>Información de Lote</h4>
@@ -303,9 +303,9 @@ const FormularioProducto2 = ({ productosNuevos, setPrecioCompraTest, onProcesoCo
                 {/* Stock y Fecha de Vencimiento para productos no CAJA */}
                 {form.unidad_medida !== "CAJA" && (
 
-                    <div className="w-full bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-2 border border-purple-200 dark:border-gray-700">
+                    <div className="w-full bg-orange-50/60 dark:bg-gray-800 rounded-xl p-2 border border-orange-100 dark:border-gray-700">
                         <div className={styleforStep}>
-                            <div className="truncate bg-purple-500 text-white rounded-lg px-3 py-1 text-sm font-bold shadow-md">
+                            <div className="bg-orange-600 text-white rounded-full px-3 py-1 text-sm font-extrabold">
                                 PASO 4
                             </div>
                             <h4 className={styleTitleBox}>Stock y Vencimiento</h4>
@@ -345,9 +345,9 @@ const FormularioProducto2 = ({ productosNuevos, setPrecioCompraTest, onProcesoCo
 
                 {form.unidad_medida === "CAJA" && (
 
-                    <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-orange-200 dark:border-gray-700">
+                    <div className="bg-orange-50/60 dark:bg-gray-800 rounded-xl p-4 border border-orange-100 dark:border-gray-700">
                         <div className={styleforStep}>
-                            <div className="truncate bg-orange-500 text-white rounded-lg px-3 py-1 text-sm font-bold shadow-md">
+                            <div className="bg-orange-600 text-white rounded-full px-3 py-1 text-sm font-extrabold">
                                 PASO 3
                             </div>
                             <h4 className={styleTitleBox}>Configuración de Cajas</h4>

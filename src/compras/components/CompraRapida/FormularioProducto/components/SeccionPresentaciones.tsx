@@ -55,14 +55,14 @@ export default function SeccionPresentaciones({ form, onFormChange }: Props) {
             )}
 
             <div className={`grid gap-3 ${esCaja ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
-                <div className={`${caja} border-emerald-200 bg-white dark:border-emerald-800/50 dark:bg-gray-800`}>
-                    <p className="flex items-center gap-2 text-sm font-extrabold text-emerald-700 dark:text-emerald-300"><FaBoxOpen aria-hidden="true" /> Unidad suelta</p>
+                <div className={`${caja} border-stone-200 bg-white dark:border-stone-800/50 dark:bg-gray-800`}>
+                    <p className="flex items-center gap-2 text-sm font-extrabold text-stone-700 dark:text-stone-300"><FaBoxOpen aria-hidden="true" /> Unidad suelta</p>
                     <p className="mt-1 text-xs text-slate-500 dark:text-gray-400">Siempre disponible. Es la unidad más chica (un comprimido, una botella).</p>
                     <p className="mt-2 text-sm font-bold text-slate-800 dark:text-gray-100">{precioUnidad > 0 ? gs(precioUnidad) : 'Falta el precio de venta (arriba)'}</p>
                 </div>
 
-                <div className={`${caja} border-violet-200 bg-white dark:border-violet-800/50 dark:bg-gray-800`}>
-                    <p className="flex items-center gap-2 text-sm font-extrabold text-violet-700 dark:text-violet-300"><FaCube aria-hidden="true" /> Pack (caja, blíster, paquete) <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 dark:bg-gray-700 dark:text-gray-300">opcional</span></p>
+                <div className={`${caja} border-orange-200 bg-white dark:border-orange-800/50 dark:bg-gray-800`}>
+                    <p className="flex items-center gap-2 text-sm font-extrabold text-orange-700 dark:text-orange-300"><FaCube aria-hidden="true" /> Pack (caja, blíster, paquete) <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 dark:bg-gray-700 dark:text-gray-300">opcional</span></p>
                     <p className="mt-1 text-xs text-slate-500 dark:text-gray-400">Un grupo de unidades que se vende junto (ej.: caja de 30 o blíster de 10).</p>
                     <label className="mt-2 block text-xs font-semibold text-slate-700 dark:text-gray-300">¿Cuántas unidades trae?
                         <NumericFormat
@@ -92,7 +92,7 @@ export default function SeccionPresentaciones({ form, onFormChange }: Props) {
                         />
                     </label>
                     {sugerido > 0 && precioPack !== sugerido && (
-                        <button type="button" onClick={() => onFormChange({ ...form, precio_venta_pack: String(Math.round(sugerido)) })} className="mt-1.5 text-xs font-bold text-violet-700 underline hover:text-violet-900 dark:text-violet-300">
+                        <button type="button" onClick={() => onFormChange({ ...form, precio_venta_pack: String(Math.round(sugerido)) })} className="mt-1.5 text-xs font-bold text-orange-700 underline hover:text-orange-900 dark:text-orange-300">
                             Usar {gs(sugerido)} ({porPack} × {gs(precioUnidad)})
                         </button>
                     )}

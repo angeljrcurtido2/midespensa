@@ -148,7 +148,7 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                         <span className="rounded-lg bg-blue-50 px-2.5 py-1.5 font-semibold text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
                             {dataHeader?.totalProductos} producto{dataHeader?.totalProductos === 1 ? '' : 's'}
                         </span>
-                        <span className="rounded-lg bg-emerald-50 px-2.5 py-1.5 font-semibold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+                        <span className="rounded-lg bg-orange-50 px-2.5 py-1.5 font-semibold text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
                             {dataHeader?.totalCantidad} unidades · ₲ {dataHeader?.totalValor?.toLocaleString('es-PY')}
                         </span>
                     </div>
@@ -156,9 +156,9 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
             </div>
             {/* Sección 1: Datos Básicos */}
             <div className='flex flex-row gap-4 px-2'>
-                <div className="w-full bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-2 border border-blue-100 dark:border-gray-700">
+                <div className="w-full bg-orange-50/60 dark:bg-gray-800 rounded-xl p-2 border border-orange-100 dark:border-gray-700">
                     <div className={styleforStep}>
-                        <div className="bg-blue-500 text-white rounded-lg px-3 py-1 text-sm font-bold shadow-md">
+                        <div className="bg-orange-600 text-white rounded-full px-3 py-1 text-sm font-extrabold">
                             PASO 1
                         </div>
                         <h4 className={styleTitleBox}>Datos Básicos</h4>
@@ -219,7 +219,7 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                                     </button>
                                 </div>
                                 {resultadoVerif?.campo === 'nombre_producto' && (
-                                    <p className={`mt-1.5 flex items-start gap-1.5 text-xs font-medium ${resultadoVerif.existe ? 'text-rose-600' : 'text-emerald-600'}`}>
+                                    <p className={`mt-1.5 flex items-start gap-1.5 text-xs font-medium ${resultadoVerif.existe ? 'text-rose-600' : 'text-orange-600'}`}>
                                         {!resultadoVerif.existe && <CheckCircle2 size={14} className="mt-px shrink-0" />} {resultadoVerif.texto}
                                     </p>
                                 )}
@@ -249,7 +249,7 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                                     </button>
                                 </div>
                                 {resultadoVerif?.campo === 'cod_barra' && (
-                                    <p className={`mt-1.5 flex items-start gap-1.5 text-xs font-medium ${resultadoVerif.existe ? 'text-rose-600' : 'text-emerald-600'}`}>
+                                    <p className={`mt-1.5 flex items-start gap-1.5 text-xs font-medium ${resultadoVerif.existe ? 'text-rose-600' : 'text-orange-600'}`}>
                                         {!resultadoVerif.existe && <CheckCircle2 size={14} className="mt-px shrink-0" />} {resultadoVerif.texto}
                                     </p>
                                 )}
@@ -290,9 +290,9 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                 </div>
 
                 {/* Sección 2: Precios y Configuración */}
-                <div className="w-full bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-2 border border-emerald-200 dark:border-gray-700">
+                <div className="w-full bg-orange-50/60 dark:bg-gray-800 rounded-xl p-2 border border-orange-100 dark:border-gray-700">
                     <div className={styleforStep}>
-                        <div className="bg-emerald-500 text-white rounded-lg px-3 py-1 text-sm font-bold shadow-md truncate">
+                        <div className="bg-orange-600 text-white rounded-full px-3 py-1 text-sm font-extrabold">
                             PASO 2
                         </div>
                         <h4 className={styleTitleBox}>Precios y Configuración</h4>
@@ -397,7 +397,7 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                                         }}
                                         data-campo="precio_venta"
                                         placeholder="0,00"
-                                        className="w-full bg-white dark:bg-gray-700 border-2 border-emerald-300 dark:border-emerald-600 rounded-xl px-4 py-3 text-sm font-bold text-emerald-700 dark:text-emerald-400 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-emerald-200 dark:focus:ring-emerald-800 focus:border-emerald-500 transition-all shadow-sm hover:shadow-md"
+                                        className="w-full bg-white dark:bg-gray-700 border-2 border-orange-300 dark:border-orange-600 rounded-xl px-4 py-3 text-sm font-bold text-orange-700 dark:text-orange-400 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-800 focus:border-orange-500 transition-all shadow-sm hover:shadow-md"
                                     />
                                 </div>
                             </div>
@@ -419,9 +419,9 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                                         handleNumericChange('precio_venta_caja', values.value || '');
                                     }}
                                     placeholder="0,00"
-                                    className="w-full mt-1 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/30 dark:to-green-900/30 border-2 border-emerald-300 dark:border-emerald-600 rounded-xl px-4 py-3 text-sm font-bold text-emerald-700 dark:text-emerald-400 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-emerald-200 dark:focus:ring-emerald-800 focus:border-emerald-500 transition-all shadow-sm hover:shadow-md"
+                                    className="w-full mt-1 bg-gradient-to-r from-orange-50 to-green-50 dark:from-orange-900/30 dark:to-green-900/30 border-2 border-orange-300 dark:border-orange-600 rounded-xl px-4 py-3 text-sm font-bold text-orange-700 dark:text-orange-400 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-800 focus:border-orange-500 transition-all shadow-sm hover:shadow-md"
                                 />
-                                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-1.5">Cálculo automático</p>
+                                <p className="text-xs text-orange-600 dark:text-orange-400 font-medium mt-1.5">Cálculo automático</p>
                             </div>
                         ) : (
                             <div className="hidden lg:block"></div>

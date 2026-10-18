@@ -138,10 +138,10 @@ const ListarAmonestaciones = () => {
             </div>
             <div className="text-center sm:text-left">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-1">
-                Gestion de Amonestaciones
+                Gestión de Amonestaciones
               </h1>
               <p className="text-xs sm:text-sm md:text-base text-blue-100">
-                Administra amonestaciones por empleado
+                Administrá las amonestaciones de cada empleado
               </p>
             </div>
           </div>
@@ -168,7 +168,7 @@ const ListarAmonestaciones = () => {
                 <FaIdCard className="text-gray-500 dark:text-gray-300" />
                 <input
                   type="text"
-                  placeholder="Filtrar por nro. documento..."
+                  placeholder="Filtrar por n.º de documento..."
                   value={documento}
                   onChange={(e) => {
                     setDocumento(e.target.value);

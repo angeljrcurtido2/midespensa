@@ -34,7 +34,7 @@ export default function Configuracion() {
   const [valorVentasProgramadasActual, setValorVentasProgramadasActual] = useState<boolean | null>(null);
   const [nuevoValorVentasProgramadas, setNuevoValorVentasProgramadas] = useState<boolean>(false);
 
-  const [valorTiendaActivaActual, setValorTiendaActivaActual] = useState<boolean | null>(null);
+  const [, setValorTiendaActivaActual] = useState<boolean | null>(null);
   const [nuevoValorTiendaActiva, setNuevoValorTiendaActiva] = useState<boolean>(false);
 
   const [nombreTiendaActual, setNombreTiendaActual] = useState<string>('');
@@ -204,14 +204,19 @@ const ConfigCard = ({
         )}
       </div>
       <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">{description}</p>
-      <select
-        value={value ? 'true' : 'false'}
-        onChange={(e) => onChange(e.target.value === 'true')}
-        className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition"
+      <button
+        type="button"
+        role="switch"
+        aria-checked={value}
+        aria-label={title}
+        onClick={() => onChange(!value)}
+        className="inline-flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-600/30"
       >
-        <option value="true">✓ Activado</option>
-        <option value="false">✗ Desactivado</option>
-      </select>
+        <span className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${value ? 'bg-orange-600' : 'bg-stone-300'}`}>
+          <span className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all ${value ? 'left-[22px]' : 'left-0.5'}`} />
+        </span>
+        <span className="text-sm font-bold text-gray-800 dark:text-gray-100">{value ? 'Sí' : 'No'}</span>
+      </button>
     </div>
   );
 
@@ -227,72 +232,65 @@ const ConfigCard = ({
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Configuración del Sistema</h1>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Administrá las configuraciones</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Ajustá cómo funciona tu despensa</p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <ConfigCard
-              title="Selección Manual por Lote"
-              description="Permite que el usuario elija manualmente de qué lote vender. Si se desactiva, el sistema aplicará FIFO automáticamente."
+              title="Elegir el lote al vender"
+              description="Si lo activás, al vender elegís de qué lote sale cada producto. Si no, el sistema usa primero el que vence antes."
               value={nuevoValorLote}
               onChange={setNuevoValorLote}
               current={valorLoteActual}
             />
             <ConfigCard
-              title="Validar Fecha de Vencimiento"
-              description="Impide vender productos con fecha de vencimiento pasada. Si se desactiva, el sistema no controlará esto."
+              title="No vender productos vencidos"
+              description="Impide vender un producto cuya fecha de vencimiento ya pasó."
               value={nuevoValorVencimiento}
               onChange={setNuevoValorVencimiento}
               current={valorVencimientoActual}
             />
 
             <ConfigCard
-              title="Ventas Programadas"
-              description="Habilita o deshabilita la automatización de ventas programadas."
+              title="Ventas programadas"
+              description="Para ventas que se repiten solas (por ejemplo, un pedido semanal a un cliente)."
               value={nuevoValorVentasProgramadas}
               onChange={setNuevoValorVentasProgramadas}
               current={valorVentasProgramadasActual}
             />
 
-            <ConfigCard
-              title="Tienda Activa (Modulo en desarrollo)"
-              description="Activa o desactiva la funcionalidad de tienda online para este usuario."
-              value={nuevoValorTiendaActiva}
-              onChange={setNuevoValorTiendaActiva}
-              current={valorTiendaActivaActual}
-            />
 
             <div className="bg-white dark:bg-gray-800 border border-blue-100 dark:border-gray-700 rounded-lg shadow-sm p-5 hover:shadow-md transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-600">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Nombre de Tienda</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Nombre de tu despensa</h3>
                 {nombreTiendaActual ? (
                   <span className="text-blue-600 dark:text-blue-400 text-xs font-medium bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full">Configurado</span>
                 ) : (
                   <span className="text-gray-400 dark:text-gray-500 text-xs font-medium bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">Sin configurar</span>
                 )}
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">Ingresá el nombre de tu tienda para mostrar en comprobantes y documentos.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">Es el nombre que sale impreso en tus tickets y comprobantes.</p>
               <input
                 type="text"
                 value={nuevoNombreTienda}
                 onChange={(e) => setNuevoNombreTienda(e.target.value)}
-                placeholder="Ej: Mi Tienda S.A."
+                placeholder="Ej: Despensa Don José"
                 className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition placeholder:text-gray-400 dark:placeholder:text-gray-500"
               />
             </div>
 
             <div className="bg-white dark:bg-gray-800 border border-blue-100 dark:border-gray-700 rounded-lg shadow-sm p-5 hover:shadow-md transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-600">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Diseño de Comprobante</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Diseño del ticket y comprobante</h3>
                 {templateActual ? (
                   <span className="text-blue-600 dark:text-blue-400 text-xs font-medium bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full">{templateActual.toUpperCase()}</span>
                 ) : (
                   <span className="text-gray-400 dark:text-gray-500 text-xs">Cargando...</span>
                 )}
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">Seleccioná el diseño que querés usar al imprimir comprobantes de venta.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">Elegí cómo querés que se vea lo que imprimís al vender.</p>
               <select
                 value={nuevoTemplate}
                 onChange={(e) => setNuevoTemplate(e.target.value)}

@@ -167,10 +167,10 @@ const ListarSalario = () => {
                         </div>
                         <div className="text-center sm:text-left">
                             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-1">
-                                Gestion de Salarios
+                                Gestión de Salarios
                             </h1>
                             <p className="text-xs sm:text-sm md:text-base text-blue-100">
-                                Administra salarios por empleado
+                                Administrá el sueldo de cada empleado
                             </p>
                         </div>
                     </div>

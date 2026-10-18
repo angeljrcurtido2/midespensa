@@ -125,11 +125,11 @@ const ListarEmpleados = ({ onSelect }: ListarEmpleadosProps) => {
         <EncabezadoListado
           icono={<FaUsers />}
           titulo="Empleados"
-          subtitulo="Administra tu nomina de empleados"
+          subtitulo="Administrá a tus empleados"
           acciones={<BotonPrincipal color="azul" onClick={() => navigate('/empleados/nuevo')}>Nuevo empleado</BotonPrincipal>}
         />
         <BarraFiltros derecha={<SelectPage limit={limit} setLimit={setLimit} setPage={setPage} />}>
-          <CampoBusqueda valor={search} onCambio={(valor) => { setSearch(valor); setPage(1); }} placeholder="Nombre, apellido, cedula o telefono..." />
+          <CampoBusqueda valor={search} onCambio={(valor) => { setSearch(valor); setPage(1); }} placeholder="Nombre, apellido, cédula o teléfono..." />
         </BarraFiltros>
         <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-gray-800"><p className="text-xs text-slate-500">En esta pagina</p><p className="text-lg font-bold">{empleados.length}</p></div>

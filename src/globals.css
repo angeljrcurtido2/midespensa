@@ -87,12 +87,12 @@ body {
 
 /* Nueva venta en pantalla completa: las secciones del formulario usan un encabezado sobrio en lugar de la franja de color. */
 .venta-compacta div:has(> h3) {
-  background: #f1f5f9 !important;
+  background: #fff1e0 !important;
   background-image: none !important;
   padding: 0.6rem 1rem !important;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #fed7aa;
 }
-.venta-compacta h3 { color: #0f172a !important; font-size: 0.95rem !important; }
+.venta-compacta h3 { color: #7c2d12 !important; font-size: 0.95rem !important; }
 .venta-compacta h3 + p { display: none; }
 .dark .venta-compacta div:has(> h3) { background: #1e293b !important; border-color: #334155; }
 .dark .venta-compacta h3 { color: #f1f5f9 !important; }

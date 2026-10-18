@@ -98,3 +98,16 @@ div[class*="bg-gradient-to-r"][class*="rounded-2xl"][class*="text-white"][class*
 ::selection { background: var(--color-orange-200); color: #431407; }
 * { scrollbar-color: var(--color-orange-300) transparent; }
 h1, h2, h3 { letter-spacing: -0.01em; }
+
+/* ── Datos de la venta/compra (columna derecha del mostrador): encabezado crema en lugar del azul ── */
+[data-venta-compact-header] {
+  background: #fff1e0 !important;
+  background-image: none !important;
+  border-bottom: 2px dashed var(--color-orange-200);
+}
+[data-venta-compact-header] h3 { color: #7c2d12 !important; font-weight: 800 !important; }
+[data-venta-compact-header] p { color: var(--color-stone-500) !important; }
+[data-venta-compact-header] ~ [data-venta-compact-body] select,
+[data-venta-compact-header] ~ [data-venta-compact-body] input { border-radius: 0.8rem; }
+.dark [data-venta-compact-header] { background: var(--color-gray-800) !important; }
+.dark [data-venta-compact-header] h3 { color: var(--color-orange-200) !important; }
