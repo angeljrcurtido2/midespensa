@@ -14,7 +14,7 @@ import { cerrarSesionApi } from '../services/login';
 import { getMisPermisos } from '../services/accesos';
 import { limpiarCachePermisos } from '../hooks/usePermisos';
 import { EVENTO_LICENCIA_VENCIDA } from '../lib/axiosConfig';
-import AppSidebar from './Sidebar';
+import BarraSuperior from './BarraSuperior';
 import BannerLicencia from './BannerLicencia';
 import PantallaBloqueo from './PantallaBloqueo';
 
@@ -56,23 +56,6 @@ function SidebarLayoutCompleto({ children }: SidebarLayoutProps) {
   // useLocation y no window.location: con HashRouter la ruta real vive en el
   // hash, y window.location.pathname es siempre '/'.
   const location = useLocation();
-  // Arranca colapsado por debajo de lg: con el valor fijo en true el sidebar se
-  // montaba desplegado y tapaba 288px de los 390px de una pantalla de móvil.
-  // Desde lg sigue abriéndose por defecto, como siempre.
-  const [isExpanded, setIsExpanded] = useState(
-    () => typeof window === 'undefined' || window.innerWidth >= 1024
-  );
-  useEffect(() => {
-    let estabaEnEscritorio = window.innerWidth >= 1024;
-    const sincronizarSidebarConAncho = () => {
-      const esEscritorio = window.innerWidth >= 1024;
-      if (esEscritorio === estabaEnEscritorio) return;
-      estabaEnEscritorio = esEscritorio;
-      setIsExpanded(esEscritorio);
-    };
-    window.addEventListener('resize', sincronizarSidebarConAncho);
-    return () => window.removeEventListener('resize', sincronizarSidebarConAncho);
-  }, []);
   // Habilita el ítem del panel de licencias en el menú. Sólo cosmético: el
   // acceso real lo controla requireProveedor en el backend.
   const [esProveedor, setEsProveedor] = useState(false);
@@ -223,45 +206,9 @@ function SidebarLayoutCompleto({ children }: SidebarLayoutProps) {
     .filter((item) => !item.subItems || item.subItems.length > 0);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
-      {/* Botón para abrir el menú por debajo de lg. Sin él el sidebar quedaba
-          completamente fuera de pantalla en móvil y no había forma de navegar:
-          medido, 0px visibles y ningún disparador fuera del propio sidebar. */}
-      {!isExpanded && (
-        <button
-          type="button"
-          onClick={() => setIsExpanded(true)}
-          aria-label="Abrir menú"
-          className="lg:hidden fixed top-3 left-3 z-[60] rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 p-3 text-white shadow-lg"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
-      )}
-
-      {/* Fondo oscuro para cerrar el menú tocando fuera, sólo en móvil. */}
-      {isExpanded && (
-        <div
-          onClick={() => setIsExpanded(false)}
-          className="lg:hidden fixed inset-0 z-40 bg-black/40"
-          aria-hidden="true"
-        />
-      )}
-
-      <AppSidebar
-        navItems={navItems}
-        isExpanded={isExpanded}
-        setIsExpanded={setIsExpanded}
-      />
-      {/* El margen que compensa al sidebar sólo se aplica desde lg. Antes era fijo
-          (ml-72 / ml-24) en todos los tamaños: con un viewport de 390px el sidebar
-          ocupaba 288px y empujaba el contenido fuera de la pantalla, dejando el
-          documento en 651px de ancho y scroll horizontal en toda la app.
-          min-w-0 permite que el contenido encoja en lugar de estirar el layout. */}
-      <main
-        className={`transition-all duration-300 flex-1 min-w-0 ${isExpanded ? 'lg:ml-72' : 'lg:ml-24'}`}
-      >
+    <div className="min-h-screen bg-gray-100 pb-16 dark:bg-gray-900 lg:pb-0">
+      <BarraSuperior navItems={navItems} onCerrarSesion={cerrarSesion} />
+      <main className="min-w-0">
         <div className="px-4 pt-4">
           <BannerLicencia licencia={licencia} />
         </div>

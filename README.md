@@ -1,4 +1,4 @@
-﻿# MiNegocio (versión gratuita)
+﻿# Mi Despensa (versión gratuita)
 
 Proyecto separado de `migracion_cliente` (el sistema de pago), con su propia identidad visual.
 Comparte el backend (`server-desa`): los límites del plan Free se aplican allá, no acá.
@@ -7,3 +7,4 @@ Comparte el backend (`server-desa`): los límites del plan Free se aplican allá
 - Menú reducido: `src/utils/generateNavItems.ts`.
 - Desarrollo: `npm install` y `npm run dev` (con `.env.local` apuntando al backend).
 - Producción: definir `VITE_API_BASE_URL`. IA apagada por defecto.
+
