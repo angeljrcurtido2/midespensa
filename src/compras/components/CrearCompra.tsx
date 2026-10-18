@@ -421,12 +421,15 @@ const CrearCompra = ({ onSuccess, pagina = false }: CrearCompraProps) => {
             1280px la columna del resumen quedaba 59px fuera de pantalla. */}
         <div className="min-w-0 w-full">
           {pagina ? (
-            <header className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-900">
+            <header
+              className="flex flex-wrap items-center justify-between gap-3 bg-stone-800 px-5 py-4 text-white"
+              style={{ borderBottom: '10px solid', borderImage: 'repeating-linear-gradient(90deg,#ea580c 0 26px,#44403c 26px 52px) 1' }}
+            >
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <h1 className="flex items-center gap-2 text-xl font-extrabold text-slate-900 dark:text-slate-100"><FaShoppingBasket className="text-blue-600" aria-hidden="true" />Nueva compra</h1>
-                <p className="text-sm text-slate-500"><kbd className="rounded border px-1.5 text-xs">F2</kbd> buscar producto · <kbd className="rounded border px-1.5 text-xs">F9</kbd> registrar compra</p>
+                <h1 className="flex items-center gap-3 text-2xl font-extrabold"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-orange-600"><FaShoppingBasket aria-hidden="true" /></span>Recepción de mercadería</h1>
+                <p className="text-sm text-stone-300"><kbd className="rounded-md bg-white/15 px-1.5 text-xs">F2</kbd> buscar producto · <kbd className="rounded-md bg-white/15 px-1.5 text-xs">F9</kbd> registrar compra</p>
               </div>
-              <button type="button" onClick={() => navigate('/compras')} className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800">Ir al listado de compras</button>
+              <button type="button" onClick={() => navigate('/compras')} className="rounded-full border-2 border-white/50 px-5 py-2 text-sm font-bold text-white hover:bg-white/10">Ver compras anteriores</button>
             </header>
           ) : (
             <TotalCompra total={total} />

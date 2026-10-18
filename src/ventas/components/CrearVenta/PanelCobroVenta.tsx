@@ -54,7 +54,7 @@ const PanelCobroVenta: FC<Props> = ({ subtotal, descuento, recargo, cantidadLine
             allowNegative={false}
             placeholder="0"
             onValueChange={(v) => setRecibido(v.floatValue || 0)}
-            className="w-44 rounded-2xl border-2 border-stone-600 bg-stone-800 px-3 py-2 text-right font-mono text-lg font-bold text-white focus:border-amber-400"
+            className="w-44 rounded-2xl !border-stone-600 !bg-stone-800 px-3 py-2 text-right font-mono text-lg font-bold !text-white focus:!border-amber-400"
           />
         </label>
         {hayRecibido && (

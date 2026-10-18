@@ -28,22 +28,26 @@ button[class*="text-white"][class*="p-3"]:active:not(:disabled) {
   box-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
 }
 
-/* ── Campos: más altos, bordes gruesos y foco naranja ── */
-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="border-red"]),
-select:not([class*="border-red"]),
-textarea:not([class*="border-red"]) {
+/* ── Campos: más altos, bordes gruesos y foco naranja (respetan los que ya vienen sin borde o transparentes) ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="border-red"]):not([class*="border-0"]):not([class*="border-none"]):not([class*="bg-transparent"]),
+select:not([class*="border-red"]):not([class*="border-0"]):not([class*="border-none"]),
+textarea:not([class*="border-red"]):not([class*="border-0"]):not([class*="border-none"]) {
   border-width: 2px;
   border-color: var(--color-gray-200);
   border-radius: 0.9rem;
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="bg-transparent"]):not([class*="border-0"]):not([class*="border-none"]),
+select:not([class*="bg-transparent"]),
+textarea:not([class*="bg-transparent"]):not([class*="border-0"]) {
   background-color: #fff;
 }
-.dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]),
+.dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="bg-transparent"]),
 .dark select,
 .dark textarea {
   background-color: var(--color-gray-800);
   border-color: var(--color-gray-700);
 }
-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="border-0"]):not([class*="border-none"]):focus,
 select:focus,
 textarea:focus {
   outline: none;
