@@ -19,7 +19,8 @@ export const crearUsuario = (data: {
   cedula: string;
   email: string;
 }) => {
-  return api.post('/usuario/register', data);
+  // version_gratuita: el servidor le da el plan Free a la cuenta nueva y puede operar enseguida (sin esperar una licencia).
+  return api.post('/usuario/register', { ...data, version_gratuita: true });
 };
 
 /** Alta desde el sistema (solo el proveedor; el servidor responde 403 al resto). */
