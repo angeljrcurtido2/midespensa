@@ -4,7 +4,8 @@ import { useEffect, useState, type FormEvent, type KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { AlertCircle, Eye, EyeOff, Loader2, Lock, User } from 'lucide-react';
-import { loginUsuario } from '../services/login';
+import { loginConGoogle, loginUsuario } from '../services/login';
+import BotonGoogle, { GOOGLE_CLIENT_ID } from './BotonGoogle';
 import { useUserStore } from '../../store/useUserStore';
 import { useThemeStore } from '../../store/useThemeStore';
 import { getConfiguracionValorString } from '../services/configuracion';
@@ -38,6 +39,33 @@ const Login = () => {
 
   useEffect(() => { document.title = `Ingresar · ${NOMBRE_SISTEMA}`; }, []);
 
+  /** Lo que se hace al entrar, con usuario y contraseña o con Google: guardar la sesión, cargar los colores y abrir el inicio. */
+  const finalizarIngreso = async (data: { acceso: string; login: string; token: string }) => {
+    const { acceso, login: username, token } = data;
+    localStorage.setItem('usuario', JSON.stringify({ acceso, username }));
+    localStorage.setItem('auth_token', token);
+    setUserRole(acceso);
+    await Promise.all([
+      getConfiguracionValorString('headercolor_gral').then((r: any) => setHeaderColor(r.data.valor || 'blue')).catch(() => setHeaderColor('blue')),
+      getConfiguracionValorString('backgroundcolor_gral').then((r: any) => setBackgroundColor(r.data.valor || 'white')).catch(() => setBackgroundColor('white')),
+      getConfiguracionValorString('textcolor_gral').then((r: any) => setTextColor(r.data.valor || 'black')).catch(() => setTextColor('black')),
+    ]);
+    setEntrando(true);
+    window.setTimeout(() => navigate('/dashboard'), reducir ? 120 : 600);
+  };
+
+  const enviarGoogle = async (credential: string) => {
+    if (cargando) return;
+    setError(''); setCargando(true);
+    try {
+      const res = await loginConGoogle(credential);
+      await finalizarIngreso(res.data);
+    } catch (err: any) {
+      const status = err?.response?.status;
+      setError(err?.response?.data?.error || (status ? 'No pudimos ingresar con Google. Probá de nuevo.' : 'No hay conexión con el servidor. Revisá tu internet.'));
+    } finally { setCargando(false); }
+  };
+
   const enviar = async (e?: FormEvent) => {
     e?.preventDefault();
     if (cargando) return;
@@ -45,21 +73,11 @@ const Login = () => {
     setError(''); setCargando(true);
     try {
       const res = await loginUsuario(login.trim(), password);
-      const { acceso, login: username, token } = res.data;
-      localStorage.setItem('usuario', JSON.stringify({ acceso, username }));
-      localStorage.setItem('auth_token', token);
       try {
         localStorage.setItem('recordar_usuario', recordar ? '1' : '0');
         if (recordar) localStorage.setItem('ultimo_usuario', login.trim()); else localStorage.removeItem('ultimo_usuario');
       } catch { /* sin almacenamiento */ }
-      setUserRole(acceso);
-      await Promise.all([
-        getConfiguracionValorString('headercolor_gral').then((r: any) => setHeaderColor(r.data.valor || 'blue')).catch(() => setHeaderColor('blue')),
-        getConfiguracionValorString('backgroundcolor_gral').then((r: any) => setBackgroundColor(r.data.valor || 'white')).catch(() => setBackgroundColor('white')),
-        getConfiguracionValorString('textcolor_gral').then((r: any) => setTextColor(r.data.valor || 'black')).catch(() => setTextColor('black')),
-      ]);
-      setEntrando(true);
-      window.setTimeout(() => navigate('/dashboard'), reducir ? 120 : 600);
+      await finalizarIngreso(res.data);
     } catch (err: any) {
       const status = err?.response?.status;
       setError(err?.response?.data?.error || (status ? 'No pudimos ingresar. Probá de nuevo.' : 'No hay conexión con el servidor. Revisá tu internet.'));
@@ -138,6 +156,16 @@ const Login = () => {
               {cargando ? <><Loader2 size={18} className="animate-spin" /> Entrando…</> : 'Entrar a mi despensa'}
             </motion.button>
           </form>
+
+          {GOOGLE_CLIENT_ID && (
+            <div className="mt-5">
+              <div className="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-wide text-stone-400" aria-hidden="true">
+                <span className="h-px flex-1 bg-stone-200" /> o <span className="h-px flex-1 bg-stone-200" />
+              </div>
+              <BotonGoogle onCredential={enviarGoogle} onError={setError} deshabilitado={cargando} />
+              <p className="mt-2 text-center text-xs text-stone-500">Si todavía no tenés cuenta, se crea sola y gratis.</p>
+            </div>
+          )}
 
           <p className="mt-6 text-center text-sm text-stone-600">
             ¿Todavía no tenés cuenta?{' '}
