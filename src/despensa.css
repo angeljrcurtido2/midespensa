@@ -1,0 +1,96 @@
+/*
+ * Mi Despensa: capa de estilo propia. Cambia la forma de TODAS las pantallas (botones, campos, tablas,
+ * encabezados y tarjetas) sin tocar la lógica de cada una. Se importa desde globals.css.
+ */
+
+/* ── Estilo plano: sin degradados. El color de cada degradado pasa a ser el color sólido de su inicio. ── */
+[class*="bg-gradient-to-"]:not([class*="bg-clip-text"]) {
+  background-image: none;
+  background-color: var(--tw-gradient-from);
+}
+
+/* ── Botones: píldoras con relieve, como teclas de caja registradora ── */
+button[class*="text-white"][class*="py-"],
+a[class*="text-white"][class*="py-"],
+button[class*="text-white"][class*="p-2"],
+button[class*="text-white"][class*="p-3"] {
+  border-radius: 9999px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow: 0 3px 0 rgb(0 0 0 / 0.18);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+}
+button[class*="text-white"][class*="py-"]:active:not(:disabled),
+a[class*="text-white"][class*="py-"]:active,
+button[class*="text-white"][class*="p-2"]:active:not(:disabled),
+button[class*="text-white"][class*="p-3"]:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
+}
+
+/* ── Campos: más altos, bordes gruesos y foco naranja ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([class*="border-red"]),
+select:not([class*="border-red"]),
+textarea:not([class*="border-red"]) {
+  border-width: 2px;
+  border-color: var(--color-gray-200);
+  border-radius: 0.9rem;
+  background-color: #fff;
+}
+.dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]),
+.dark select,
+.dark textarea {
+  background-color: var(--color-gray-800);
+  border-color: var(--color-gray-700);
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-orange-600);
+  box-shadow: 0 0 0 4px rgb(234 88 12 / 0.18);
+}
+input[type="checkbox"], input[type="radio"] { accent-color: #ea580c; }
+
+/* ── Encabezados grandes de cada pantalla: franja plana con toldo abajo ── */
+div[class*="bg-gradient-to-r"][class*="rounded-xl"][class*="text-white"][class*="p-6"],
+div[class*="bg-gradient-to-r"][class*="rounded-2xl"][class*="text-white"][class*="p-6"] {
+  border-radius: 1.25rem 1.25rem 0.4rem 0.4rem;
+  border-style: solid;
+  border-width: 0 0 12px 0;
+  border-image: repeating-linear-gradient(90deg, #9a3412 0 26px, #fff7ed 26px 52px) 1;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Tarjetas: bordes cálidos y esquinas más grandes ── */
+[class*="rounded-2xl"][class*="shadow-lg"],
+[class*="rounded-xl"][class*="shadow-lg"],
+[class*="rounded-2xl"][class*="shadow-md"] {
+  border: 1px solid var(--color-orange-100);
+}
+.dark [class*="rounded-2xl"][class*="shadow-lg"],
+.dark [class*="rounded-xl"][class*="shadow-lg"] { border-color: var(--color-gray-700); }
+
+/* ── Tablas: cada fila es una tarjeta ── */
+@layer components {
+  table { border-collapse: separate; border-spacing: 0 6px; }
+  thead th, thead td {
+    background: transparent !important;
+    color: var(--color-gray-500) !important;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 0;
+  }
+  tbody tr { background: #fff; box-shadow: 0 1px 2px rgb(120 53 15 / 0.10); }
+  tbody td { border: 0; }
+  tbody td:first-child { border-radius: 0.9rem 0 0 0.9rem; }
+  tbody td:last-child { border-radius: 0 0.9rem 0.9rem 0; }
+  .dark tbody tr { background: var(--color-gray-800); }
+}
+
+/* ── Detalles ── */
+::selection { background: var(--color-orange-200); color: #431407; }
+* { scrollbar-color: var(--color-orange-300) transparent; }
+h1, h2, h3 { letter-spacing: -0.01em; }

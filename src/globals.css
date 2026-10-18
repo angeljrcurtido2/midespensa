@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./despensa.css";
 @import "@fontsource-variable/nunito";
 
 /* Configurar dark mode basado en clase (en lugar de prefers-color-scheme) */

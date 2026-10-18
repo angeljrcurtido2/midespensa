@@ -434,12 +434,15 @@ const CrearVenta = ({ onSuccess, pagina = false }: CrearVentaProps) => {
                 e.preventDefault();
                 if (detalles.length > 0) setConfirmModalOpen(true);
             }} className="flex min-h-[calc(100vh-4rem)] flex-col">
-                <header className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-900">
+                <header
+                    className="flex flex-wrap items-center justify-between gap-3 bg-orange-700 px-5 py-4 text-white"
+                    style={{ borderBottom: '10px solid', borderImage: 'repeating-linear-gradient(90deg,#9a3412 0 26px,#fff7ed 26px 52px) 1' }}
+                >
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                        <h1 className="flex items-center gap-2 text-xl font-extrabold text-slate-900 dark:text-slate-100"><FaShoppingCart className="text-blue-600" aria-hidden="true" />Nueva venta</h1>
-                        <p className="text-sm text-slate-500"><kbd className="rounded border px-1.5 text-xs">F2</kbd> buscar producto · <kbd className="rounded border px-1.5 text-xs">F9</kbd> registrar venta</p>
+                        <h1 className="flex items-center gap-3 text-2xl font-extrabold"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/20"><FaShoppingCart aria-hidden="true" /></span>Mostrador</h1>
+                        <p className="text-sm text-orange-100"><kbd className="rounded-md bg-black/20 px-1.5 text-xs">F2</kbd> buscar producto · <kbd className="rounded-md bg-black/20 px-1.5 text-xs">F9</kbd> cobrar</p>
                     </div>
-                    <button type="button" onClick={() => navigate('/ventas')} className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800">Ir al listado de ventas</button>
+                    <button type="button" onClick={() => navigate('/ventas')} className="rounded-full border-2 border-white/60 px-5 py-2 text-sm font-bold text-white hover:bg-white/15">Ver ventas anteriores</button>
                 </header>
                 <div className="grid flex-1 items-start gap-4 bg-slate-50 p-4 dark:bg-slate-950 lg:grid-cols-[minmax(0,1fr)_410px]">
                     <section className="flex min-w-0 flex-col gap-3">
