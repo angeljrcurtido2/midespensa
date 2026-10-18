@@ -108,7 +108,7 @@ const RegisterUser: React.FC<RegistrarUser> = ({ onSuccess }) => {
         <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-50 text-emerald-600"><CheckCircle2 size={30} /></span>
         <h2 className="mt-5 text-2xl font-bold tracking-tight text-slate-900">¡Cuenta creada!</h2>
         <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-slate-600">
-          Para empezar a usar el sistema, el administrador tiene que habilitar tu licencia. Apenas lo haga, ingresá con tu usuario y contraseña.
+          Tu cuenta gratuita ya está lista. Ingresá con tu usuario y contraseña y empezá a ordenar tu despensa.
         </p>
         <button type="button" onClick={() => onSuccess?.()} className="mt-7 h-12 w-full rounded-lg bg-blue-600 text-[15px] font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-600/30">
           Volver a iniciar sesión
@@ -121,7 +121,7 @@ const RegisterUser: React.FC<RegistrarUser> = ({ onSuccess }) => {
     <div>
       <div className="mb-6 pr-10">
         <h2 className="text-2xl font-bold tracking-tight text-slate-900">Crear tu cuenta</h2>
-        <p className="mt-1 text-[15px] text-slate-600">Completá tus datos. La licencia la habilita el administrador del sistema.</p>
+        <p className="mt-1 text-[15px] text-slate-600">Completá tus datos. Completá tus datos. Es gratis y podés empezar enseguida.</p>
       </div>
 
       <form onSubmit={postRegister} className="space-y-4" noValidate>
