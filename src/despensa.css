@@ -138,3 +138,17 @@ h1, h2, h3 { letter-spacing: -0.01em; }
   .lineas-venta td[data-etiqueta="Subtotal"] ~ td { align-self: center; }
   .lineas-venta td input.w-28 { width: 100% !important; }
 }
+
+/* ── Celular: las demás tablas (cajas, arqueos, pagos…) se muestran como tarjetas con "COLUMNA: valor" (ver useTablasMovil) ── */
+@media (max-width: 767px) {
+  table.tabla-movil:not(.lineas-venta) { min-width: 0 !important; width: 100%; border-collapse: collapse; }
+  table.tabla-movil:not(.lineas-venta) thead { display: none; }
+  table.tabla-movil:not(.lineas-venta), table.tabla-movil:not(.lineas-venta) tbody, table.tabla-movil:not(.lineas-venta) tr, table.tabla-movil:not(.lineas-venta) td { display: block; width: 100%; }
+  table.tabla-movil:not(.lineas-venta) tbody tr { margin: 0 0 0.6rem; padding: 0.55rem 0.8rem; border-radius: 1rem; background: #fff; box-shadow: 0 1px 3px rgb(120 53 15 / 0.14); }
+  table.tabla-movil:not(.lineas-venta) td { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; padding: 0.3rem 0 !important; border: 0 !important; border-radius: 0 !important; text-align: right; }
+  table.tabla-movil:not(.lineas-venta) td::before { content: attr(data-label); flex: none; max-width: 46%; text-align: left; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #78716c; }
+  table.tabla-movil:not(.lineas-venta) td[data-label=""]::before { display: none; }
+  table.tabla-movil:not(.lineas-venta) td[data-label=""] { justify-content: flex-end; flex-wrap: wrap; }
+  table.tabla-movil:not(.lineas-venta) td[colspan] { justify-content: center; text-align: center; }
+  div.overflow-x-auto:has(> table.tabla-movil) { overflow-x: visible; border: 0; background: transparent; box-shadow: none; }
+}

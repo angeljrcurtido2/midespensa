@@ -125,7 +125,7 @@ const CrearAsistencia = ({ onSuccess, onClose }: CrearAsistenciaProps) => {
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 block">
             Empleado
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <input
               type="text"
               readOnly

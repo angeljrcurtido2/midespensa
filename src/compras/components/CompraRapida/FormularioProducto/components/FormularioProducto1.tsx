@@ -229,14 +229,14 @@ const FormularioProducto1 = ({ codigosPendientes, dataHeader, setOpcionSeleccion
                                 <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-2">
                                     Cód. de Barr.
                                 </label>
-                                <div className="flex gap-2">
+                                <div className="flex flex-wrap gap-2">
                                     <input
                                     type="text"
                                     name="cod_barra"
                                     value={form.cod_barra}
                                     onChange={(e) => { handleChange(e); setResultadoVerif(null); }}
                                     placeholder="7891000053508"
-                                    className="flex-1 min-w-0 bg-white dark:bg-gray-700 border-2 border-slate-200 dark:border-gray-600 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 dark:text-gray-100 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 focus:border-blue-500 transition-all shadow-sm hover:shadow-md"
+                                    className="flex-1 min-w-[12rem] bg-white dark:bg-gray-700 border-2 border-slate-200 dark:border-gray-600 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 dark:text-gray-100 placeholder-slate-400 dark:placeholder-gray-400 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 focus:border-blue-500 transition-all shadow-sm hover:shadow-md"
                                 />
                                     <BotonGenerarCodigoBarra
                                         evitar={[...(codigosPendientes || []), form.cod_barra || ''].filter(Boolean)}

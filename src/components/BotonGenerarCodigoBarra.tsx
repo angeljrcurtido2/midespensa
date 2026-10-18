@@ -38,7 +38,7 @@ export default function BotonGenerarCodigoBarra({ onCodigo, evitar = [], classNa
         onClick={generar}
         disabled={cargando}
         title="El sistema le asigna un código de barras propio a este producto"
-        className={`flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-3 text-xs font-bold text-white transition hover:bg-emerald-700 disabled:bg-gray-300 ${className}`}
+        className={`flex shrink-0 items-center gap-1.5 rounded-xl bg-orange-600 px-3 text-xs font-bold text-white transition hover:bg-orange-700 disabled:bg-gray-300 ${className}`}
       >
         <FaBarcode size={13} aria-hidden="true" /> {cargando ? '...' : 'Generar'}
       </button>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import { useTablasMovil } from './hooks/useTablasMovil';
 import { HashRouter, useLocation, useRoutes } from 'react-router-dom';
 import { ShellPersistente } from './components/SidebarLayout';
 import Workspace from './components/Workspace';
@@ -53,6 +54,7 @@ function AppWrapper() {
 const RUTAS_SIN_MENU = ['/login'];
 
 function App() {
+  useTablasMovil();
   const { pathname } = useLocation();
   if (RUTAS_SIN_MENU.includes(pathname.replace(/\/+$/, ''))) return <PantallaSinMenu />;
   // Con menú: espacio de trabajo con ventanas (pestañas con X) dentro del shell persistente.

@@ -130,7 +130,7 @@ const ListarDatosBancarios = ({ onSelect }: ListarDatosBancariosProps) => {
           </div>
 
           {/* Botones y controles */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <button
               onClick={() => navigate('/datosbancarios/nuevo')}
               className="

@@ -25,11 +25,11 @@ const etiqueta = 'block text-xs font-semibold text-slate-700 dark:text-gray-300'
 export default function DatosFarmaciaProducto({ valores, onCambio, className = '' }: Props) {
   const hayDatos = !!(valores.principio_activo || valores.laboratorio || (valores.receta && valores.receta !== 'libre') || valores.stock_minimo);
   return (
-    <details open={hayDatos} className={`group rounded-xl border-2 border-teal-200 bg-teal-50/60 p-3 dark:border-teal-800/50 dark:bg-teal-900/10 ${className}`}>
-      <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-teal-800 dark:text-teal-200">
+    <details open={hayDatos} className={`group rounded-xl border-2 border-orange-200 bg-orange-50/60 p-3 dark:border-orange-800/50 dark:bg-orange-900/10 ${className}`}>
+      <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-orange-800 dark:text-orange-200">
         <FaPills aria-hidden="true" />
         Datos de farmacia <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-bold text-slate-500 dark:bg-gray-800">opcional</span>
-        <span className="ml-auto text-xs font-semibold text-teal-700 group-open:hidden">Abrir</span>
+        <span className="ml-auto text-xs font-semibold text-orange-700 group-open:hidden">Abrir</span>
       </summary>
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <label className={etiqueta}>Principio activo

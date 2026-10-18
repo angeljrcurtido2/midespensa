@@ -116,11 +116,11 @@ const ListarArqueosCaja = () => {
         </div>
 
         {/* Paginación */}
-        <div className="flex justify-between items-center mt-6">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded shadow disabled:opacity-50"
+            className="whitespace-nowrap bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded shadow disabled:opacity-50"
           >
             ⬅ Anterior
           </button>
@@ -130,7 +130,7 @@ const ListarArqueosCaja = () => {
           <button
             onClick={() => setPage((prev) => prev + 1)}
             disabled={page >= totalPages}
-            className="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded shadow disabled:opacity-50"
+            className="whitespace-nowrap bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded shadow disabled:opacity-50"
           >
             Siguiente ➡
           </button>
