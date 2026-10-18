@@ -30,13 +30,13 @@ const TONOS: Record<Tono, { barra: string; icono: string }> = {
 function Dato({ to, titulo, valor, detalle, tono, icono, cargando }: { to: string; titulo: string; valor: ReactNode; detalle?: ReactNode; tono: Tono; icono: ReactNode; cargando?: boolean }) {
   const t = TONOS[tono];
   return (
-    <Link to={to} className="group relative flex min-h-[132px] flex-col overflow-hidden rounded-3xl border border-orange-100 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-600/30">
+    <Link to={to} className="group relative flex min-h-[124px] flex-col overflow-hidden rounded-3xl border border-orange-100 bg-white p-4 shadow-sm sm:p-5 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-600/30">
       <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-1.5 ${t.barra}`} />
       <div className="flex items-start justify-between gap-3">
-        <p className="text-sm font-bold text-stone-600">{titulo}</p>
-        <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-2xl ${t.icono}`}>{icono}</span>
+        <p className="text-[13px] font-bold text-stone-600 sm:text-sm">{titulo}</p>
+        <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-2xl sm:h-10 sm:w-10 ${t.icono}`}>{icono}</span>
       </div>
-      {cargando ? <div className="mt-3 h-8 w-32 animate-pulse rounded-lg bg-stone-100" /> : <p className="mt-2 text-[26px] font-extrabold leading-tight tracking-tight text-stone-900">{valor}</p>}
+      {cargando ? <div className="mt-3 h-8 w-32 animate-pulse rounded-lg bg-stone-100" /> : <p className="mt-2 break-words text-xl font-extrabold leading-tight tracking-tight text-stone-900 sm:text-[26px]">{valor}</p>}
       {detalle && !cargando && <p className="mt-auto pt-2 text-xs font-semibold text-stone-500">{detalle}</p>}
     </Link>
   );
@@ -110,7 +110,7 @@ export default function InicioDespensa() {
 
       <section aria-labelledby="hoy">
         <h2 id="hoy" className="mb-3 text-lg font-extrabold text-stone-900">Hoy</h2>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           {verVentas && (
             <Dato to="/ventas" titulo="Vendiste hoy" tono="naranja" icono={<ShoppingCart size={20} />} cargando={cargando && !hoy}
               valor={gs(hoy?.total)}

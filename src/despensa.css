@@ -111,3 +111,30 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 [data-venta-compact-header] ~ [data-venta-compact-body] input { border-radius: 0.8rem; }
 .dark [data-venta-compact-header] { background: var(--color-gray-800) !important; }
 .dark [data-venta-compact-header] h3 { color: var(--color-orange-200) !important; }
+
+/* ── Celular: las líneas de la venta pasan de tabla (760 px) a tarjetas, para ver precio, subtotal y el botón de quitar sin deslizar ── */
+@media (max-width: 767px) {
+  .lineas-venta { min-width: 0 !important; border-collapse: collapse; }
+  .lineas-venta thead { display: none; }
+  .lineas-venta, .lineas-venta tbody, .lineas-venta tr, .lineas-venta td { display: block; width: 100%; }
+  .lineas-venta tbody tr { margin: 0 0 0.6rem; padding: 0.7rem 0.8rem; border-radius: 1.1rem; box-shadow: 0 1px 3px rgb(120 53 15 / 0.14); background: #fff; }
+  .lineas-venta tbody tr + tr { border-top: 0; }
+  .lineas-venta td { padding: 0.3rem 0 !important; border-radius: 0 !important; }
+  .lineas-venta td[data-numero] { display: none; }
+  .lineas-venta td[data-etiqueta]::before { content: attr(data-etiqueta); display: block; margin-bottom: 0.15rem; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #78716c; }
+  .lineas-venta td[data-etiqueta="Subtotal"] { display: flex; align-items: baseline; justify-content: space-between; text-align: right; }
+  .lineas-venta td[data-etiqueta="Subtotal"]::before { margin: 0; }
+  .lineas-venta td > div { width: 100% !important; }
+  .lineas-venta td input { max-width: 100%; }
+  .lineas-venta tr.bg-slate-50 { margin-top: -0.5rem; background: #fff7ed; }
+}
+@media (max-width: 767px) {
+  /* Cada línea en dos columnas: cantidad | precio, y abajo subtotal | acciones. Las presentaciones múltiples (caja, pack) ocupan el ancho completo. */
+  .lineas-venta tbody tr:not(.bg-slate-50) { display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.7rem; align-items: end; }
+  .lineas-venta tbody tr:not(.bg-slate-50) > td:nth-child(2) { grid-column: 1 / -1; }
+  .lineas-venta td[data-etiqueta="Cantidad"]:has(.grid-cols-3),
+  .lineas-venta td[data-etiqueta^="Precio"]:has(label + label) { grid-column: 1 / -1; }
+  .lineas-venta td[data-etiqueta="Subtotal"] { align-self: center; }
+  .lineas-venta td[data-etiqueta="Subtotal"] ~ td { align-self: center; }
+  .lineas-venta td input.w-28 { width: 100% !important; }
+}

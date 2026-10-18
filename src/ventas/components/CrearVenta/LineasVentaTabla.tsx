@@ -41,7 +41,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
 
   return (
     <div className="relative overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
-      <table className="w-full min-w-[760px] border-collapse text-sm">
+      <table className="lineas-venta w-full min-w-[760px] border-collapse text-sm">
         <thead className="bg-slate-100 text-xs uppercase tracking-wide text-slate-600 dark:bg-slate-800 dark:text-slate-300">
           <tr>
             <th scope="col" className="w-10 px-3 py-2.5 text-left">#</th>
@@ -65,7 +65,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
             return (
               <Fragment key={i}>
                 <tr className="align-top hover:bg-blue-50/40 dark:hover:bg-slate-800/60">
-                  <td className="px-3 py-3 text-slate-400">{i + 1}</td>
+                  <td className="px-3 py-3 text-slate-400" data-numero>{i + 1}</td>
                   <td className="px-3 py-3">
                     <p className="font-bold text-slate-900 dark:text-slate-100">{d.nombre_producto}</p>
                     <p className="mt-0.5 text-xs text-slate-500">
@@ -85,7 +85,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
                     )}
                   </td>
 
-                  <td className="px-3 py-3">
+                  <td className="px-3 py-3" data-etiqueta="Cantidad">
                     {multiple ? (
                       <div className="grid w-[210px] grid-cols-3 gap-1.5">
                         {caja ? (
@@ -138,7 +138,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
                     )}
                   </td>
 
-                  <td className="px-3 py-3">
+                  <td className="px-3 py-3" data-etiqueta="Precio (Gs.)">
                     <div className="flex w-[210px] flex-col gap-1.5">
                       <label className="flex items-center gap-2 text-[11px] font-semibold text-slate-500">
                         <span className="w-10">{multiple ? 'Unid.' : ''}</span>
@@ -160,7 +160,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
                   </td>
 
                   {conAjuste && (
-                    <td className="px-3 py-3">
+                    <td className="px-3 py-3" data-etiqueta={tipoDescuento === 'recargo_producto' ? 'Recargo' : 'Descuento'}>
                       <NumericFormat
                         value={tipoDescuento === 'recargo_producto' ? d.recargo : d.descuento}
                         thousandSeparator="." decimalSeparator="," decimalScale={0} allowNegative={false}
@@ -171,7 +171,7 @@ const LineasVentaTabla: FC<Props> = ({ detalles, tipoDescuento, updateDetalle, r
                     </td>
                   )}
 
-                  <td className="px-3 py-3 text-right text-base font-extrabold text-emerald-700 dark:text-emerald-400">{gs(calcularSubtotal(d))}</td>
+                  <td className="px-3 py-3 text-right text-base font-extrabold text-emerald-700 dark:text-emerald-400" data-etiqueta="Subtotal">{gs(calcularSubtotal(d))}</td>
 
                   <td className="px-3 py-3">
                     <div className="flex justify-end gap-1.5">

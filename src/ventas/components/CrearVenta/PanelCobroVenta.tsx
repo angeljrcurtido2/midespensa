@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useEffect, useRef, useState, type FC } from 'react';
 import { NumericFormat } from 'react-number-format';
 import { FaCheckCircle } from 'react-icons/fa';
 
@@ -20,8 +20,19 @@ const PanelCobroVenta: FC<Props> = ({ subtotal, descuento, recargo, cantidadLine
   const vuelto = recibido - total;
   const hayRecibido = recibido > 0;
 
+  // En el celular el ticket queda debajo de los productos: mientras no se lo ve, una barra fija muestra el total y lleva hasta él.
+  const ticket = useRef<HTMLElement>(null);
+  const [ticketVisible, setTicketVisible] = useState(true);
+  useEffect(() => {
+    const el = ticket.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const o = new IntersectionObserver(([e]) => setTicketVisible(e.isIntersecting), { threshold: 0.35 });
+    o.observe(el);
+    return () => o.disconnect();
+  }, []);
+
   return (
-    <section aria-label="Ticket de la venta" className="relative rounded-3xl bg-stone-900 text-stone-100 shadow-lg">
+    <section ref={ticket} aria-label="Ticket de la venta" className="relative scroll-mt-24 rounded-3xl bg-stone-900 text-stone-100 shadow-lg">
       {/* Borde de ticket */}
       <div aria-hidden="true" className="absolute -top-2 inset-x-4 h-3"
         style={{ backgroundImage: 'radial-gradient(circle at 8px 0, transparent 7px, #1c1917 8px)', backgroundSize: '16px 12px', backgroundRepeat: 'repeat-x' }} />
@@ -75,6 +86,19 @@ const PanelCobroVenta: FC<Props> = ({ subtotal, descuento, recargo, cantidadLine
           <kbd className="rounded-md bg-black/25 px-2 py-0.5 text-xs font-semibold normal-case">F9</kbd>
         </button>
       </div>
+
+      {cantidadLineas > 0 && !ticketVisible && (
+        <div className="fixed inset-x-3 bottom-[4.6rem] z-20 lg:hidden">
+          <button
+            type="button"
+            onClick={() => ticket.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            className="flex w-full items-center justify-between gap-3 rounded-full bg-orange-600 px-5 py-3.5 text-left text-white shadow-xl shadow-orange-900/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-300"
+          >
+            <span className="text-sm font-bold">{cantidadLineas} {cantidadLineas === 1 ? 'producto' : 'productos'} · ir a cobrar</span>
+            <span className="font-mono text-lg font-extrabold">Gs. {gs(total)}</span>
+          </button>
+        </div>
+      )}
     </section>
   );
 };
