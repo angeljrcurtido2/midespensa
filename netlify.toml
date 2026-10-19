@@ -1,0 +1,13 @@
+# Mi Despensa en Netlify. Estos valores son públicos (van dentro del código de la página): no hay secretos acá.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Servidor compartido (el mismo del sistema de pago, por el túnel de Cloudflare).
+  VITE_API_BASE_URL = "https://sistemaprueba2026.online/api"
+  # ID de cliente web de Google (Google Cloud Console → Clientes → Mi Despensa web). Es público.
+  VITE_GOOGLE_CLIENT_ID = "499556891039-qamspqdneibiu9a1f7rcr6sif4ahjobg.apps.googleusercontent.com"
+  # La IA queda apagada en la versión gratuita.
+  VITE_FEATURE_IA_ENABLED = "false"
