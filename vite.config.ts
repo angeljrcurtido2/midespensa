@@ -20,6 +20,9 @@ export default defineConfig({
     },
   },
   server: {
+    // Puerto propio de Mi Despensa (el 5173 es del sistema de pago). Es el origen autorizado en Google Cloud y en el servidor.
+    port: 5181,
+    strictPort: true,
     watch: {
       // promo-output/ acumula grabaciones .webm del script scripts/promo/generate-promo.mjs
       // — algunos nombres de archivo ahí rompían el file watcher de Vite (chokidar lstat
